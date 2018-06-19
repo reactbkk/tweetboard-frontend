@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "emotion": "^9.2.3",
     "html-entities": "^1.2.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"

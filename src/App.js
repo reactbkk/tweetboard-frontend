@@ -3,7 +3,6 @@ import './App.css'
 import React, { Component } from 'react'
 
 import TweetBoard from './TweetBoard'
-import logo from './logo.svg'
 
 /* global firebase */
 
