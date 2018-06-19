@@ -14,12 +14,18 @@ class App extends Component {
   }
   componentDidMount() {
     const ref = firebase.database().ref('tweets/reactbkk')
-    ref.orderByKey().limitToLast(500).on('value', snapshot => {
-      this.setState({ tweets: snapshot.val() })
-    })
-    firebase.database().ref('bannedUsers').on('value', snapshot => {
-      this.setState({ bannedUsers: snapshot.val() })
-    })
+    ref
+      .orderByKey()
+      .limitToLast(500)
+      .on('value', snapshot => {
+        this.setState({ tweets: snapshot.val() })
+      })
+    firebase
+      .database()
+      .ref('bannedUsers')
+      .on('value', snapshot => {
+        this.setState({ bannedUsers: snapshot.val() })
+      })
     window.testt = () => {
       const next = { ...this.state.tweets }
       delete next[Object.keys(next).reverse()[0]]

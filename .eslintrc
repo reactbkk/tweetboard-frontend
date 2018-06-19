@@ -1,3 +1,7 @@
+parser: babel-eslint
 extends:
   - standard
   - standard-react
+  - plugin:prettier/recommended
+rules:
+  react/prop-types: off

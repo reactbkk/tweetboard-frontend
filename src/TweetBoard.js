@@ -216,11 +216,8 @@ function Tweet({ tweet }) {
       />
       <div style={{ padding: 8, flex: 'auto' }}>
         <div>
-          <strong>{tweet.user.name}</strong>
-          {' '}
-          <small style={{ opacity: 0.6 }}>
-            @{tweet.user.screen_name}
-          </small>
+          <strong>{tweet.user.name}</strong>{' '}
+          <small style={{ opacity: 0.6 }}>@{tweet.user.screen_name}</small>
         </div>
         <div
           style={{
