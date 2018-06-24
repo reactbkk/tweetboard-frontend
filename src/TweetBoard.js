@@ -121,7 +121,7 @@ function Tweet({ tweet }) {
           style={{
             overflow: 'hidden',
             position: 'relative',
-            color: '#333',
+            color: '#eee',
             display: 'flex',
             margin: '32px 32px 0',
             alignItems: 'top'
@@ -145,7 +145,7 @@ function Tweet({ tweet }) {
           />
           <div style={{ marginLeft: 24, flex: 'auto' }}>
             <div style={{ fontSize: 24 }}>
-              <strong>{tweet.user.name}</strong>{' '}
+              <strong style={{ color: '#61dafb' }}>{tweet.user.name}</strong>{' '}
               <small style={{ opacity: 0.6 }}>@{tweet.user.screen_name}</small>
             </div>
             <div style={{ fontSize: 32 }}>{text}</div>
@@ -206,7 +206,7 @@ function TweetList({ tweetList }) {
         right: 0,
         bottom: 0,
         left: 0,
-        background: 'white'
+        background: '#333'
       }}
     >
       <ScrollContainer>
