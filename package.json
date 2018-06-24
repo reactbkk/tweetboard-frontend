@@ -6,7 +6,8 @@
     "emotion": "^9.2.3",
     "html-entities": "^1.2.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-toggled": "^1.2.7"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

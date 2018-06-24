@@ -1,4 +1,6 @@
 import React from 'react'
+import Toggle from 'react-toggled'
+/* global firebase */
 
 export function TweetBoard({ tweets, bannedUsers }) {
   const tweetList = Object.keys(tweets)
@@ -104,41 +106,86 @@ function Tweet({ tweet }) {
       text = tweet.extended_tweet.full_text
     }
   }
+
+  const spam = () => {
+    firebase
+      .database()
+      .ref('bannedUsers')
+      .child(tweet.user.screen_name)
+      .set(true)
+  }
   return (
-    <div
-      style={{
-        overflow: 'hidden',
-        position: 'relative',
-        color: '#333',
-        display: 'flex',
-        margin: '32px 32px 0',
-        alignItems: 'top'
-      }}
-      className="tweet"
-      onClick={() => console.log(tweet)}
-    >
-      <div
-        style={{
-          background: `#eee url(${tweet.user.profile_image_url_https.replace(
-            /_normal(\.\w+)$/,
-            '$1'
-          )}) center no-repeat`,
-          flex: 'none',
-          backgroundSize: 'cover',
-          borderRadius: '50%',
-          width: 64,
-          height: 64,
-          marginTop: 6
-        }}
-      />
-      <div style={{ marginLeft: 24, flex: 'auto' }}>
-        <div style={{ fontSize: 24 }}>
-          <strong>{tweet.user.name}</strong>{' '}
-          <small style={{ opacity: 0.6 }}>@{tweet.user.screen_name}</small>
+    <Toggle>
+      {({ on, toggle }) => (
+        <div
+          style={{
+            overflow: 'hidden',
+            position: 'relative',
+            color: '#333',
+            display: 'flex',
+            margin: '32px 32px 0',
+            alignItems: 'top'
+          }}
+          className="tweet"
+          onClick={() => toggle()}
+        >
+          <div
+            style={{
+              background: `#eee url(${tweet.user.profile_image_url_https.replace(
+                /_normal(\.\w+)$/,
+                '$1'
+              )}) center no-repeat`,
+              flex: 'none',
+              backgroundSize: 'cover',
+              borderRadius: '50%',
+              width: 64,
+              height: 64,
+              marginTop: 6
+            }}
+          />
+          <div style={{ marginLeft: 24, flex: 'auto' }}>
+            <div style={{ fontSize: 24 }}>
+              <strong>{tweet.user.name}</strong>{' '}
+              <small style={{ opacity: 0.6 }}>@{tweet.user.screen_name}</small>
+            </div>
+            <div style={{ fontSize: 32 }}>{text}</div>
+          </div>
+          {!!on && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                background: 'rgba(0,0,0,0.5)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                color: 'white',
+                fontSize: 32,
+                textShadow: '0 1px 5px black'
+              }}
+            >
+              <div>
+                Mark as spam?{' '}
+                <button
+                  style={{
+                    font: 'inherit',
+                    background: '#c33',
+                    cursor: 'pointer'
+                  }}
+                  onClick={spam}
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-        <div style={{ fontSize: 32 }}>{text}</div>
-      </div>
-    </div>
+      )}
+    </Toggle>
   )
 }
 
