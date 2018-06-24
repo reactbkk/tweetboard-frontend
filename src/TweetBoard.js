@@ -8,7 +8,9 @@ export function TweetBoard({ tweets, bannedUsers }) {
     .map(key => tweets[key])
     .filter(tweet => !bannedUsers[tweet.user.screen_name])
   if (/\?list/.test(window.location.search)) {
-    return <TweetList tweetList={tweetList} />
+    return (
+      <TweetList tweetList={tweetList} total={Object.keys(tweets).length} />
+    )
   }
   return (
     <div>
@@ -63,7 +65,10 @@ export function TweetBoard({ tweets, bannedUsers }) {
               <div style={{ marginLeft: '0.5em' }}>#reactbkk</div>
             </div>
             <div style={{ flex: '1', position: 'relative' }}>
-              <TweetList tweetList={tweetList} />
+              <TweetList
+                tweetList={tweetList}
+                total={Object.keys(tweets).length}
+              />
             </div>
           </div>
           <div
@@ -197,7 +202,7 @@ function Tweet({ tweet }) {
   )
 }
 
-function TweetList({ tweetList }) {
+function TweetList({ tweetList, total }) {
   return (
     <div
       style={{
@@ -218,6 +223,11 @@ function TweetList({ tweetList }) {
             </ScrollItem>
           )
         })}
+        <ScrollItem key={'_total'}>
+          <div style={{ padding: 20, textAlign: 'center', opacity: 0.5 }}>
+            {total - tweetList.length} spam tweets filtered out
+          </div>
+        </ScrollItem>
       </ScrollContainer>
     </div>
   )
