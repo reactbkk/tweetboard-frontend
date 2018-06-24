@@ -15,7 +15,7 @@ class App extends Component {
     const ref = firebase.database().ref('tweets/reactbkk')
     ref
       .orderByKey()
-      .limitToLast(500)
+      .limitToLast(1500)
       .on('value', snapshot => {
         this.setState({ tweets: snapshot.val() })
       })
