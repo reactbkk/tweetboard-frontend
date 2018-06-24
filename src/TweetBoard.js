@@ -165,15 +165,23 @@ function Tweet({ tweet }) {
                 textAlign: 'center',
                 color: 'white',
                 fontSize: 32,
-                textShadow: '0 1px 5px black'
+                textShadow: '0 1px 5px black',
+                animation: '0.5s wow ease-out'
               }}
+              className="bye"
             >
-              <div>
+              <div
+                style={{
+                  animation: '0.5s wow ease-out'
+                }}
+              >
                 Mark as spam?{' '}
                 <button
                   style={{
                     font: 'inherit',
+                    fontWeight: 'bold',
                     background: '#c33',
+                    color: 'white',
                     cursor: 'pointer'
                   }}
                   onClick={spam}
